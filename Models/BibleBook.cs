@@ -10,7 +10,7 @@ namespace Models
     {
         public Guid Id { get; set; }
         public required string Name { get; set; }
-        public required string Abbreviation { get; set; }
+        public int ChapterCount { get; set; }
 
         public Guid? BibleId { get; set; }
         public Bible? Bible { get; set; }

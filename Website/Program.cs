@@ -4,6 +4,7 @@ using DataAcess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Models;
+using Website.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,8 @@ builder.Services.ConfigureApplicationCookie(options => {
 });
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddScoped<AppDataService>();
 
 var app = builder.Build();
 

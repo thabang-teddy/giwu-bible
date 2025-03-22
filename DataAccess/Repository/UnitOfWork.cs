@@ -17,6 +17,7 @@ namespace DataAccess.Repository
             _db = db;
             BookMark = new BookMarkRepository(_db);
             Bible = new BibleRepository(_db);
+            BibleBook = new BibleBookRepository(_db);
             Chapter = new ChapterRepository(_db);
         }
 
