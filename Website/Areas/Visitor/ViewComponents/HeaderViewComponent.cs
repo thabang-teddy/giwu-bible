@@ -1,5 +1,7 @@
 ﻿using DataAcess.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 
 namespace Website.Areas.Visitor.ViewComponents
 {
@@ -7,14 +9,31 @@ namespace Website.Areas.Visitor.ViewComponents
     {
         private readonly ApplicationDbContext _context; // Inject DB context if needed
 
-        public HeaderViewComponent(ApplicationDbContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+
+        public HeaderViewComponent(
+            ApplicationDbContext context,
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager
+        )
         {
             _context = context;
+
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View();
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            if (user != null)
+            {
+                return View("Default", user.UserName);
+            }
+
+            return View("Default", "Guest");
         }
     }
 }

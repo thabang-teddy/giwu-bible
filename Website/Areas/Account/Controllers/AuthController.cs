@@ -1,20 +1,22 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient.Server;
 using Microsoft.IdentityModel.Tokens;
+using Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Website.ViewModels.Auth;
 
-namespace Website.Areas.Identity.Controllers
+namespace Website.Areas.Account.Controllers
 {
     public class AuthController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IConfiguration _config;
 
-        public AuthController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IConfiguration config)
+        public AuthController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IConfiguration config)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -26,11 +28,12 @@ namespace Website.Areas.Identity.Controllers
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
         {
             try
             {
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirtName="" , LastName = "" };
                 var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (!result.Succeeded)
@@ -49,24 +52,40 @@ namespace Website.Areas.Identity.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Login([FromBody] LoginViewModel model)
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             try
             {
                 var user = await _userManager.FindByEmailAsync(model.Email);
-                if (user == null || !(await _userManager.CheckPasswordAsync(user, model.Password)))
-                    return Unauthorized();
 
-                var token = GenerateJwtToken(user);
-                return Ok(new { success = false, Token = token });
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "User not found.");
+                    return View(model);
+                }
+
+                // Sign user in with his credentials
+                if (await _signInManager.CheckPasswordSignInAsync(user, model.Password, true) == Microsoft.AspNetCore.Identity.SignInResult.Success)
+                {
+                    await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, false);
+                    return RedirectToAction("Index", "Home", new { area = "" });
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid Email or password.");
+                    return View(model);
+                }
             }
             catch (Exception ex)
             {
-                return Ok(new { success = false, message = "User login unsuccessful!" });
+                ModelState.AddModelError(string.Empty, "User login unsuccessful!");
+                return View(model);
+
             }
         }
 
-        private string GenerateJwtToken(IdentityUser user)
+        private string GenerateJwtToken(ApplicationUser user)
         {
             var claims = new[]
             {
@@ -83,6 +102,12 @@ namespace Website.Areas.Identity.Controllers
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
     }
 }

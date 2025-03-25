@@ -20,6 +20,25 @@ namespace DataAcess.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            var user = new ApplicationUser
+            {
+                Id = Guid.NewGuid().ToString(),
+                UserName = "admin",
+                FirtName = "Admin",
+                LastName = "Giwu",
+                Email = "admin@example.com",
+                NormalizedUserName = "ADMIN",
+                NormalizedEmail = "ADMIN@EXAMPLE.COM",
+                EmailConfirmed = true
+            };
+
+            // Hash the password
+            var passwordHasher = new PasswordHasher<ApplicationUser>();
+            user.PasswordHash = passwordHasher.HashPassword(user, "Admin@123");
+
+            // Seed the user
+            modelBuilder.Entity<ApplicationUser>().HasData(user);
         }
     }
 }
