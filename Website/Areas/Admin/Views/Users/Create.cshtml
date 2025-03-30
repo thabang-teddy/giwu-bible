@@ -1,0 +1,22 @@
+﻿@model Website.Areas.Admin.ViewModels.Users.UserViewModel
+
+<h2>Create User</h2>
+
+<form asp-action="Create">
+    <label>First Name</label>
+    <input asp-for="FirstName" class="form-control" />
+
+    <label>Last Name</label>
+    <input asp-for="LastName" class="form-control" />
+
+    <label>Email</label>
+    <input asp-for="Email" class="form-control" />
+
+    <label>Phone</label>
+    <input asp-for="PhoneNumber" class="form-control" />
+
+    <label>App Data</label>
+    <input asp-for="AppData" class="form-control" />
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

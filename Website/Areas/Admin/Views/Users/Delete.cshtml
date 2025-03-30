@@ -1,0 +1,9 @@
+﻿@model Website.Areas.Admin.ViewModels.Users.UserViewModel
+
+<h2>Delete User</h2>
+<p>Are you sure you want to delete @Model.FirstName @Model.LastName?</p>
+
+<form asp-action="DeleteConfirmed">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>

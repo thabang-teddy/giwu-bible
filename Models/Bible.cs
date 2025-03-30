@@ -10,6 +10,9 @@ namespace Models
     public class Bible
     {
         public Guid Id { get; set; }
+        public string LagacyId { get; set; }
+        public string RootTable { get; set; }
+        public string RootUrl { get; set; }
         public required string Name { get; set; }
         public required string Abbreviation { get; set; }
         public required string About { get; set; }

@@ -1,0 +1,133 @@
+﻿@using Models
+@{
+    ViewData["Title"] = "Dashboard";
+    // List<Bible> bibleList = new(){
+    //     {
+    //         RootId = "001",
+    //         RootTable = "t_asv",
+    //         Abbreviation = "ASV",
+    //         Language = "english",
+    //         Version = "American Standard-ASV1901",
+    //         InfoText = "",
+    //         InfoUrl = "http:en.wikipedia.org/wiki/American_Standard_Version",
+    //         Publisher = "",
+    //         Copyright = "Public Domain",
+    //         CopyrightInfo = ""
+    //     },
+    //     {
+    //         RootId = "002",
+    //         RootTable = "t_bbe",
+    //         Abbreviation = "BBE",
+    //         Language = "english",
+    //         Version = "Bible in Basic English",
+    //         InfoText = "",
+    //         InfoUrl = "http:en.wikipedia.org/wiki/Bible_in_Basic_English",
+    //         Publisher = "",
+    //         Copyright = "Public Domain",
+    //         CopyrightInfo = ""
+    //     },
+    //     {
+    //         RootId = "003",
+    //         RootTable = "t_dby",
+    //         Abbreviation = "DARBY",
+    //         Language = "english",
+    //         Version = "Darby English Bible",
+    //         InfoText = "",
+    //         InfoUrl = "http:en.wikipedia.org/wiki/Darby_Bible",
+    //         Publisher = "",
+    //         Copyright = "Public Domain",
+    //         CopyrightInfo = ""
+    //     },
+    //     {
+    //         RootId = "004",
+    //         RootTable = "t_kjv",
+    //         Abbreviation = "KJV",
+    //         Language = "english",
+    //         Version = "King James Version",
+    //         InfoText = "",
+    //         InfoUrl = "http:en.wikipedia.org/wiki/King_James_Version",
+    //         Publisher = "",
+    //         Copyright = "Public Domain",
+    //         CopyrightInfo = ""
+    //     },
+    //     {
+    //         RootId = "005",
+    //         RootTable = "t_wbt",
+    //         Abbreviation = "WBT",
+    //         Language = "english",
+    //         Version = "Webster's Bible",
+    //         InfoText = "",
+    //         InfoUrl = "http:en.wikipedia.org/wiki/Webster%27s_Revision",
+    //         Publisher = "",
+    //         Copyright = "Public Domain",
+    //         CopyrightInfo = ""
+    //     },
+    //     {
+    //         RootId = "006",
+    //         RootTable = "t_web",
+    //         Abbreviation = "WEB",
+    //         Language = "english",
+    //         Version = "World English Bible",
+    //         InfoText = "",
+    //         InfoUrl = "http:en.wikipedia.org/wiki/World_English_Bible",
+    //         Publisher = "",
+    //         Copyright = "Public Domain",
+    //         CopyrightInfo = ""
+    //     },
+    //     {
+    //         RootId = "007",
+    //         RootTable = "t_ylt",
+    //         Abbreviation = "YLT",
+    //         Language = "english",
+    //         Version = "Young's Literal Translation",
+    //         InfoText = "",
+    //         InfoUrl = "http:en.wikipedia.org/wiki/Young%27s_Literal_Translation",
+    //         Publisher = "",
+    //         Copyright = "Public Domain",
+    //         CopyrightInfo = ""
+    //     }
+    // };
+}
+
+<div class="container-fluid">
+    <h4>Dashboard</h4>
+    <div class="row">
+        <div class="col-3">
+            <div class="card my-2">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-body-secondary">bbe</h6>
+                    <h5 class="card-title">Bible in Basic English</h5>
+                    <p class="card-text">The Bible In Basic English (also known as BBE) is a translation of the Bible into Basic English. The BBE was translated by ..</p>
+                    <a asp-area="Admin" asp-controller="Bible" asp-action="Edit" asp-rout-id="" type="button" class="btn btn-primary">Edit</a>
+                    <a asp-area="Admin" asp-controller="Bible" asp-action="Edit" asp-rout-id="" type="button" class="btn btn-secondary">View</a>
+                    <a asp-area="Admin" asp-controller="Bible" asp-action="Edit" asp-rout-id="" type="button" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card my-2">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-body-secondary">kjv</h6>
+                    <h5 class="card-title">King Jams Version</h5>
+                    <p class="card-text">The King James Version (KJV), also known as the King James Bible (KJB) or simply the Authorized Version (AV), ...</p>
+                    <span class="card-link">start reading -></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card my-2">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-body-secondary">ylt</h6>
+                    <h5 class="card-title">Young's Literal Translation</h5>
+                    <p class="card-text">Young's Literal Translation (YLT) is a translation of the Bible into English, published in 1862. The translation was made by ...</p>
+                    <span class="card-link">Read Now -></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+}

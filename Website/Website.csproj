@@ -25,10 +25,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Areas\Admin\Controllers\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Content Update="Areas\Visitor\Views\Shared\_Layout.cshtml">
 	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

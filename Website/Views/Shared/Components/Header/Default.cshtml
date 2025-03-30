@@ -26,12 +26,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Profile" asp-action="Index">
-                                <i class="fa-solid fa-user"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Profile" asp-action="Index">
+                            <a class="nav-link text-dark" asp-area="Account" asp-controller="Profile" asp-action="Index">
                                 <i class="fa-solid fa-user"></i>
                             </a>
                         </li>
@@ -43,6 +38,11 @@
                 else
                 {
                     <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                                <i class="fa-solid fa-gauge"></i>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Account" asp-controller="Auth" asp-action="Login">Login</a>
                         </li>

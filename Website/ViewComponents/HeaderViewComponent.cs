@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 
-namespace Website.Areas.Visitor.ViewComponents
+namespace Website.ViewComponents
 {
     public class HeaderViewComponent : ViewComponent
     {
