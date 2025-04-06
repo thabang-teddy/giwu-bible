@@ -11,6 +11,7 @@ namespace DataAccess.Repository
         public IBibleRepository Bible  { get; private set; }
         public IBibleBookRepository BibleBook  { get; private set; }
         public IChapterRepository Chapter  { get; private set; }
+        public IFeedbackRepository Feedback  { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
@@ -19,6 +20,7 @@ namespace DataAccess.Repository
             Bible = new BibleRepository(_db);
             BibleBook = new BibleBookRepository(_db);
             Chapter = new ChapterRepository(_db);
+            Feedback = new FeedbackRepository(_db);
         }
 
         public void Save()

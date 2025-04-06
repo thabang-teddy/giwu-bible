@@ -7,6 +7,7 @@ namespace DataAccess.Repository.IRepository
         IBibleRepository Bible { get; }
         IBibleBookRepository BibleBook { get; }
         IChapterRepository Chapter { get; }
+        IFeedbackRepository Feedback { get; }
 
         void Save();
     }

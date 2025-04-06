@@ -4,6 +4,7 @@ using DataAcess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250406111725_AddedFeedback")]
+    partial class AddedFeedback
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,7 +245,7 @@ namespace DataAccess.Migrations
                         {
                             Id = "e756c817-bcb7-47b2-8e7b-52a6b3065cf4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7222a742-5c73-4b66-af1c-396b83465273",
+                            ConcurrencyStamp = "158604b5-38c6-42a6-bfb3-2c1ab467478e",
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             FirtName = "Admin",
@@ -250,9 +253,9 @@ namespace DataAccess.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEM59KzHDL3+Te8oCE9WUDaXeOQ9aqu8Dh0ga7YjAhL5wTPkKvw+VGtRnzov+yqcvaQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEG0djXs39Eyu30PHaZGsG3AuxkEzJDxwVvJmTotxeN6rfMgFAQ7YbUE5QbvrsU4oPw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "93e17676-8459-45f2-b155-e9e88d4f9043",
+                            SecurityStamp = "238c8820-3de0-45b9-92cc-145a2de5b257",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -387,7 +390,7 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("AlertDate")
+                    b.Property<DateTime>("AlertDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreatedAt")
@@ -411,10 +414,11 @@ namespace DataAccess.Migrations
                     b.Property<string>("Subject")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UpdateAt")
+                    b.Property<DateTime>("UpdateAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdateBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

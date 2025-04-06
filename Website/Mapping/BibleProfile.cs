@@ -2,11 +2,11 @@
 using Models;
 using Website.Areas.Admin.ViewModels.Bibles;
 
-namespace Website.Areas.Admin.Mapping
+namespace Website.Mapping
 {
-    public class MappingProfile : Profile
+    public class BibleProfile : Profile
     {
-        public MappingProfile()
+        public BibleProfile()
         {
             // Bible Mapping
             CreateMap<Bible, BibleViewModel>().ReverseMap();

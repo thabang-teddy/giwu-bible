@@ -1,0 +1,30 @@
+﻿@model Website.Areas.Admin.ViewModels.Feedback.FeedbackViewModel
+
+@{
+    ViewData["Title"] = "View Feedback";
+}
+
+<h2>Are you sure you want to delete this Feedback?</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h5>@Model.Subject</h5>
+        <p><strong>Name:</strong> @Model.Name</p>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Date:</strong> @Model.CreatedAt.ToLocalTime().ToString("f")</p>
+        <p><strong>Message:</strong></p>
+        <p>@Model.Message</p>
+        <p><strong>Notes:</strong></p>
+        <p>@Model.Notes</p>
+        <p><strong>AlertDate:</strong> @Model.AlertDate</p>
+        <p><strong>CreatedAt:</strong> @Model.CreatedAt</p>
+        <p><strong>UpdateAt:</strong> @Model.UpdateAt</p>
+        <p><strong>UpdateBy:</strong> @Model.UpdateBy</p>
+    </div>
+</div>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

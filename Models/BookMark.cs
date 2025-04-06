@@ -12,5 +12,10 @@ namespace Models
 
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
+
+        public BookMark()
+        {
+            Id = Guid.NewGuid();
+        }
     }
 }
