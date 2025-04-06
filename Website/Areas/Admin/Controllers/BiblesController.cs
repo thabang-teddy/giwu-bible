@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using DataAccess.Repository;
 using DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Website.Areas.Admin.ViewModels.Bibles;
 
 namespace Website.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class BiblesController : Controller
     {
         private readonly IUnitOfWork _repository;

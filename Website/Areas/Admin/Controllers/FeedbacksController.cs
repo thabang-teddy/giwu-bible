@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Website.Areas.Admin.ViewModels.Feedback;
 
 namespace Website.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class FeedbacksController : Controller
     {
         private readonly IUnitOfWork _repository;

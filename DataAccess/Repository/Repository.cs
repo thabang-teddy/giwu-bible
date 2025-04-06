@@ -36,6 +36,12 @@ namespace DataAccess.Repository
             return query.FirstOrDefault();
         }
 
+        public IEnumerable<T> GetRow()
+        {
+            IQueryable<T> query = dbSet;
+            return query;
+        }
+        
         public IEnumerable<T> GetAll(string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;

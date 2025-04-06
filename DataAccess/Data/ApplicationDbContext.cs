@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using DataAccess.Data.SeedData;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Models;
@@ -22,24 +23,9 @@ namespace DataAcess.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            var user = new ApplicationUser
-            {
-                Id = "e756c817-bcb7-47b2-8e7b-52a6b3065cf4",
-                UserName = "admin",
-                FirtName = "Admin",
-                LastName = "Giwu",
-                Email = "admin@example.com",
-                NormalizedUserName = "ADMIN",
-                NormalizedEmail = "ADMIN@EXAMPLE.COM",
-                EmailConfirmed = true
-            };
+            // Apply seed data from different files
+            UsersSeed.Apply(modelBuilder);
 
-            // Hash the password
-            var passwordHasher = new PasswordHasher<ApplicationUser>();
-            user.PasswordHash = passwordHasher.HashPassword(user, "Admin@123");
-
-            // Seed the user
-            modelBuilder.Entity<ApplicationUser>().HasData(user);
         }
     }
 }
