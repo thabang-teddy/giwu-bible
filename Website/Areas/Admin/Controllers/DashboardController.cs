@@ -27,7 +27,7 @@ namespace Website.Areas.Admin.Controllers
         {
             var dashboard = new DashboardViewModel();
             dashboard.Bibles = _repository.Bible.GetRow().Count();
-            dashboard.Syncs = 0;
+            dashboard.Syncs = 1;
             dashboard.Feedbacks = _repository.Feedback.GetRow().Count();
             dashboard.Users = _userManager.Users.Count();
             return View(dashboard);

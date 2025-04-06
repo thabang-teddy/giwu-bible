@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Bibles</h5>
                     <p class="card-text">Total Bibles : @Model.Bibles</p>
-                    <a asp-area="Admin" asp-controller="Bible" asp-action="Index" type="button" class="btn btn-primary">Open Bible List</a>
+                    <a asp-area="Admin" asp-controller="Bibles" asp-action="Index" type="button" class="btn btn-primary">Open Bible List</a>
                 </div>
             </div>
         </div>
@@ -21,8 +21,8 @@
             <div class="card my-2">
                 <div class="card-body">
                     <h5 class="card-title">Feedback</h5>
-                    <p class="card-text">Total Feedbacks : @Model.Bibles</p>
-                    <a asp-area="Admin" asp-controller="Feedback" asp-action="Index" type="button" class="btn btn-primary">Open Feedback List</a>
+                    <p class="card-text">Total Feedbacks : @Model.Feedbacks</p>
+                    <a asp-area="Admin" asp-controller="Feedbacks" asp-action="Index" type="button" class="btn btn-primary">Open Feedback List</a>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
             <div class="card my-2">
                 <div class="card-body">
                     <h5 class="card-title">Sync Data</h5>
-                    <p class="card-text">: </p>
+                    <p class="card-text">Sync Total : @Model.Syncs</p>
                     <a asp-area="Admin" asp-controller="Sync" asp-action="Index" type="button" class="btn btn-primary">Open Sync List</a>
                 </div>
             </div>
@@ -39,7 +39,7 @@
             <div class="card my-2">
                 <div class="card-body">
                     <h5 class="card-title">Users</h5>
-                    <p class="card-text">Total Users : @Model.Bibles</p>
+                    <p class="card-text">Total Users : @Model.Users</p>
                     <a asp-area="Admin" asp-controller="Users" asp-action="Index" type="button" class="btn btn-primary">Open Users List</a>
                 </div>
             </div>
