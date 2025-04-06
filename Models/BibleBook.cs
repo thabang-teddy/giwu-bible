@@ -16,5 +16,10 @@ namespace Models
         public Bible? Bible { get; set; }
 
         public List<Chapter> Chapters { get; set; } = new List<Chapter>();
+
+        public BibleBook()
+        {
+            Id = Guid.NewGuid();
+        }
     }
 }

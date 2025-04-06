@@ -13,13 +13,11 @@ namespace DataAccess.Repository
         {
             _db = db;
             this.dbSet = _db.Set<T>();
-            //_db.Bibles == dbSet
-
         }
 
         public void Add(T entity)
         {
-            dbSet.Add(entity);
+           dbSet.Add(entity);
         }
 
         public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)

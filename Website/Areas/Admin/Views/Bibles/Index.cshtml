@@ -1,0 +1,37 @@
+﻿@model List<Website.Areas.Admin.ViewModels.Bibles.BibleViewModel>
+
+@{
+    ViewData["Title"] = "Bible List";
+}
+
+<div class="p-4">
+    <h2>Bible List</h2>
+    <a asp-action="Create" class="btn btn-primary mt-2 mb-4">Add New Bible</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Abbreviation</th>
+                <th>Publisher</th>
+                <th>Language</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bible in Model)
+            {
+                <tr>
+                    <td>@bible.Name</td>
+                    <td>@bible.Abbreviation</td>
+                    <td>@bible.Publisher</td>
+                    <td>@bible.Language</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@bible.Id" class="btn btn-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@bible.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
