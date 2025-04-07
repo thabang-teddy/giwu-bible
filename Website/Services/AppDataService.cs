@@ -42,19 +42,19 @@ namespace Website.Services
 
                     var bibleBooks = bibleBooksInDb.Where(x => x.BibleId == biblesInDb[i].Id).ToList();
 
-                    if (bibleBooks.Any())
-                    {
-                        for (int a = 0; a < bibleBooks.Count; a++)
-                        {
-                            var bibleBook = new BibleBookViewModel()
-                            {
-                                Name = bibleBooks[a].Name,
-                                ChapterCount = bibleBooks[a].ChapterCount
-                            };
-                        }
-                    }
+                    //if (bibleBooks.Any())
+                    //{
+                    //    for (int a = 0; a < bibleBooks.Count; a++)
+                    //    {
+                    //        var bibleBook = new BibleBookViewModel()
+                    //        {
+                    //            Name = bibleBooks[a].Name,
+                    //            ChapterCount = bibleBooks[a].ChapterCount
+                    //        };
+                    //    }
+                    //}
 
-                    bibleList.Add(bible);
+                    //bibleList.Add(bible);
 
                 }
             }

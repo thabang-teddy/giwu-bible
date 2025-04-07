@@ -1,6 +1,6 @@
 using DataAccess.Repository.IRepository;
 using DataAccess.Repository;
-using DataAcess.Data;
+using DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Models;
@@ -15,6 +15,10 @@ try
     builder.Services.AddControllersWithViews();
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+    builder.Services.AddDbContext<SqliteDbContext>(options =>
+    options.UseSqlite("Data Source=bible-sqlite.db"));
+
 
     builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 

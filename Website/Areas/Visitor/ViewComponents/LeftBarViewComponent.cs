@@ -1,4 +1,4 @@
-﻿using DataAcess.Data;
+﻿using DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Website.Areas.Visitor.ViewComponents

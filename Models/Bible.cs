@@ -15,7 +15,8 @@
         public required string Language { get; set; }
         public string? OtherInfo { get; set; }
 
-        public List<BibleBook> BobleBooks { get; set; } = new List<BibleBook>();
+        public Guid? BobleBookId { get; set; }
+        public BibleBook BibleBook { get; set; }
 
         public Bible()
         {

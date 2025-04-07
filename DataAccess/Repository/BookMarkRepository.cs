@@ -1,5 +1,5 @@
 ﻿using DataAccess.Repository;
-using DataAcess.Data;
+using DataAccess.Data;
 using DataAccess.Repository.IRepository;
 using Models;
 using System;

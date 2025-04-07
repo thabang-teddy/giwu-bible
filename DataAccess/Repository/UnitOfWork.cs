@@ -1,6 +1,6 @@
 ﻿
 using DataAccess.Repository.IRepository;
-using DataAcess.Data;
+using DataAccess.Data;
 
 namespace DataAccess.Repository
 {

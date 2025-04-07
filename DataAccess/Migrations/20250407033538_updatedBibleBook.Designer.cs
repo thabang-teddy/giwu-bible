@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250406111725_AddedFeedback")]
-    partial class AddedFeedback
+    [Migration("20250407033538_updatedBibleBook")]
+    partial class updatedBibleBook
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,14 @@ namespace DataAccess.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "8d04dce2-969a-435d-bba4-df3f325983dc",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -137,6 +145,13 @@ namespace DataAccess.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "e756c817-bcb7-47b2-8e7b-52a6b3065cf4",
+                            RoleId = "8d04dce2-969a-435d-bba4-df3f325983dc"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -245,17 +260,17 @@ namespace DataAccess.Migrations
                         {
                             Id = "e756c817-bcb7-47b2-8e7b-52a6b3065cf4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "158604b5-38c6-42a6-bfb3-2c1ab467478e",
-                            Email = "admin@example.com",
+                            ConcurrencyStamp = "cec6f062-e44c-42a8-b925-000522f32771",
+                            Email = "admin@giwu.com",
                             EmailConfirmed = true,
                             FirtName = "Admin",
                             LastName = "Giwu",
                             LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@EXAMPLE.COM",
+                            NormalizedEmail = "ADMIN@GIWU.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEG0djXs39Eyu30PHaZGsG3AuxkEzJDxwVvJmTotxeN6rfMgFAQ7YbUE5QbvrsU4oPw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC1+xn2sjWz5c0d8X57K1TRqxXd86xugtR7cL9KYkpZPhPIoVsVjZ+hvWh1LIbucxQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "238c8820-3de0-45b9-92cc-145a2de5b257",
+                            SecurityStamp = "9163aff7-1cdc-41e8-8af4-5943bbc5c3d7",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -273,6 +288,9 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("About")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("BobleBookId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Copyright")
                         .HasColumnType("nvarchar(max)");
@@ -314,19 +332,17 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("BibleId")
+                    b.Property<Guid>("BibleId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("ChapterCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("BookList")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BibleId");
+                    b.HasIndex("BibleId")
+                        .IsUnique();
 
                     b.ToTable("BibleBooks");
                 });
@@ -390,7 +406,7 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("AlertDate")
+                    b.Property<DateTime?>("AlertDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreatedAt")
@@ -414,11 +430,10 @@ namespace DataAccess.Migrations
                     b.Property<string>("Subject")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdateAt")
+                    b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdateBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -489,8 +504,10 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Models.BibleBook", b =>
                 {
                     b.HasOne("Models.Bible", "Bible")
-                        .WithMany("BobleBooks")
-                        .HasForeignKey("BibleId");
+                        .WithOne("BibleBook")
+                        .HasForeignKey("Models.BibleBook", "BibleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Bible");
                 });
@@ -508,7 +525,8 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Models.Bible", b =>
                 {
-                    b.Navigation("BobleBooks");
+                    b.Navigation("BibleBook")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Models.BibleBook", b =>

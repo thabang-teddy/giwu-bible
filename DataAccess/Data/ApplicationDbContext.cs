@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using Models.SyncModels.BibleSQlite;
 
-namespace DataAcess.Data
+namespace DataAccess.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -23,9 +24,15 @@ namespace DataAcess.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Bible>()
+                .HasOne(b => b.BibleBook)
+                .WithOne(bb => bb.Bible)
+                .HasForeignKey<BibleBook>(bb => bb.BibleId);
+
             // Apply seed data from different files
             UsersSeed.Apply(modelBuilder);
 
         }
     }
+
 }
