@@ -22,6 +22,7 @@ namespace Website.Areas.Admin.ViewModels.Visitor
 
     public class BibleBookViewModel
     {
+        public int Book { get; set; }
         public required string Name { get; set; }
         public int ChapterCount { get; set; }
         public List<ChapterViewModel> Chapters { get; set; } = new List<ChapterViewModel>();

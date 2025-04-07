@@ -19,6 +19,19 @@ namespace DataAccess.Repository
         {
            dbSet.Add(entity);
         }
+        public async Task AddAsync(T entity)
+        {
+           await dbSet.AddAsync(entity);
+        }
+        
+        public void AddRange(List<T> entities)
+        {
+           dbSet.AddRange(entities);
+        }
+        public async Task AddRangeAsync(List<T> entities)
+        {
+           await dbSet.AddRangeAsync(entities);
+        }
 
         public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {

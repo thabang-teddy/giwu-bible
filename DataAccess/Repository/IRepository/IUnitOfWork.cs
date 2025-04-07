@@ -10,5 +10,6 @@ namespace DataAccess.Repository.IRepository
         IFeedbackRepository Feedback { get; }
 
         void Save();
+        Task SaveChangesAsync();
     }
 }

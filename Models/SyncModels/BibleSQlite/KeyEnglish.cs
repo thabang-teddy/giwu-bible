@@ -1,10 +1,11 @@
-﻿namespace Models.SyncModels.BibleSQlite
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Models.SyncModels.BibleSQlite
 {
     public class KeyEnglish
     {
+        [Key]
         public int b { get; set; }
-        public string? n { get; set; }
-        public string? t { get; set; }
-        public int g { get; set; }
+        public required string n { get; set; }
     }
 }

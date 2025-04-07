@@ -27,5 +27,10 @@ namespace DataAccess.Repository
         {
             _db.SaveChanges();
         }
+
+        public async Task SaveChangesAsync()
+        {
+            await _db.SaveChangesAsync();
+        }
     }
 }

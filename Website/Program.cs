@@ -17,7 +17,7 @@ try
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
     builder.Services.AddDbContext<SqliteDbContext>(options =>
-    options.UseSqlite("Data Source=bible-sqlite.db"));
+    options.UseSqlite("Data Source=../DataAccess/Data/Syncdata/sqlite/bible-sqlite.db"));
 
 
     builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
@@ -49,6 +49,22 @@ try
         {
             // Log the error or handle it (optional)
             Console.WriteLine("Database migration failed: " + ex.Message);
+            throw;
+        }
+    }
+
+    using (var scope = app.Services.CreateScope())
+    {
+        try
+        {
+            var sqlite = scope.ServiceProvider.GetRequiredService<SqliteDbContext>();
+            var connected = await sqlite.BibleVersionKeys.AnyAsync();
+            Console.WriteLine("SQLite is connected and responding.");
+        }
+        catch (Exception ex)
+        {
+            // Log the error or handle it (optional)
+            Console.WriteLine("SQLite connected failed: " + ex.Message);
             throw;
         }
     }

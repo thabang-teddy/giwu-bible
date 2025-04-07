@@ -1,7 +1,10 @@
-﻿namespace Models.SyncModels.BibleSQlite
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Models.SyncModels.BibleSQlite
 {
     public class BibleVersionKey
     {
+        [Key]
         public int id { get; set; }
         public string? table { get; set; }
         public required string abbreviation { get; set; }
