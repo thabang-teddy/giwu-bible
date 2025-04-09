@@ -7,7 +7,7 @@ namespace DataAccess.Repository.IRepository
     {
         //T - Category
         IEnumerable<T> GetAll(string? includeProperties = null);
-        IEnumerable<T> GetRow();
+        IQueryable<T> GetRow();
         T Get(Expression<Func<T, bool>> filter, string? includeProperties = null);
         void Add(T entity);
         Task AddAsync(T entity);

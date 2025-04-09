@@ -49,7 +49,7 @@ namespace DataAccess.Repository
             return query.FirstOrDefault();
         }
 
-        public IEnumerable<T> GetRow()
+        public IQueryable<T> GetRow()
         {
             IQueryable<T> query = dbSet;
             return query;

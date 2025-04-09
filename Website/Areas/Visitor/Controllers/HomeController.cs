@@ -1,7 +1,10 @@
+using AutoMapper;
 using Azure.Core;
 using DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Models;
+using Newtonsoft.Json;
 using System.Diagnostics;
 using Website.ViewModels;
 using Website.ViewModels.Visitor;
@@ -11,13 +14,6 @@ namespace Website.Areas.Visitor.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
             return View();

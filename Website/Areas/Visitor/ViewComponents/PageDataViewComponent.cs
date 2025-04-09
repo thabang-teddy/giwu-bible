@@ -1,6 +1,4 @@
-﻿using DataAccess.Data;
-using Microsoft.AspNetCore.Mvc;
-using Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Website.Services;
 using Website.ViewModels.Visitor;
@@ -18,7 +16,7 @@ namespace Website.Areas.Visitor.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            List<BibleViewModel> biblesViewModel = _appDataService.GetGlogalBibleList();
+            List<VisitorBibleViewModel> biblesViewModel = _appDataService.GetGlogalBibleList();
 
             PageDataViewModel pageDataViewModel = new()
             {

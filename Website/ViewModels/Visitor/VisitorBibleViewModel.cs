@@ -1,32 +1,31 @@
 ﻿
-using Models;
 
 namespace Website.ViewModels.Visitor
 {
-    public class BibleViewModel
+    public class VisitorBibleViewModel
     {
         public Guid Id { get; set; }
         public required string Name { get; set; }
         public required string Abbreviation { get; set; }
-        public required string About { get; set; }
-        public required string Url { get; set; }
-        public required string Publisher { get; set; }
-        public required string Copyright { get; set; }
+        public string? About { get; set; }
+        public string? Url { get; set; }
+        public string? Publisher { get; set; }
+        public string? Copyright { get; set; }
         public required string Language { get; set; }
-        public required string OtherInfo { get; set; }
+        public string? OtherInfo { get; set; }
 
-        public List<BibleBookViewModel> BobleBooks { get; set; } = new List<BibleBookViewModel>();
+        public List<VisitorBibleBookViewModel> BobleBooks { get; set; } = new List<VisitorBibleBookViewModel>();
     }
 
-    public class BibleBookViewModel
+    public class VisitorBibleBookViewModel
     {
         public int Book { get; set; }
         public required string Name { get; set; }
         public int ChapterCount { get; set; }
-        public List<ChapterViewModel> Chapters { get; set; } = new List<ChapterViewModel>();
+        public List<VisitorChapterViewModel> Chapters { get; set; } = new List<VisitorChapterViewModel>();
     }
 
-    public class ChapterViewModel
+    public class VisitorChapterViewModel
     {
         public int Number { get; set; }
         public List<VersesViewModel> Verses { get; set; } = new List<VersesViewModel>();
