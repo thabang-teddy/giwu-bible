@@ -1,20 +1,27 @@
 ﻿using DataAccess.Data;
+using DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Website.Services;
+using Website.ViewModels.Visitor;
 
 namespace Website.Areas.Visitor.ViewComponents
 {
     public class LeftBarViewComponent : ViewComponent
     {
-        private readonly ApplicationDbContext _context; // Inject DB context if needed
+        private readonly AppDataService _appDataService;
 
-        public LeftBarViewComponent(ApplicationDbContext context)
+        public LeftBarViewComponent(AppDataService appDataService)
         {
-            _context = context;
+            _appDataService = appDataService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public IViewComponentResult Invoke()
         {
-            return View();
+            List<VisitorBibleViewModel> biblesViewModel = _appDataService.GetGlogalBibleList();
+
+            return View(biblesViewModel);
         }
     }
 }
