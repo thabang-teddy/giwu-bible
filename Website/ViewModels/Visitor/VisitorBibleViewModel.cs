@@ -22,17 +22,18 @@ namespace Website.ViewModels.Visitor
         public int Book { get; set; }
         public required string Name { get; set; }
         public int ChapterCount { get; set; }
-        public List<VisitorChapterViewModel> Chapters { get; set; } = new List<VisitorChapterViewModel>();
     }
 
     public class VisitorChapterViewModel
     {
+        public string? Bible { get; set; }
+        public string? Book { get; set; }
         public int Number { get; set; }
         public List<VersesViewModel> Verses { get; set; } = new List<VersesViewModel>();
     }
     public class VersesViewModel
     {
-        public int Number { get; set; }
-        public required string Verse { get; set; }
+        public int Verse { get; set; }
+        public required string Text { get; set; }
     }
 }

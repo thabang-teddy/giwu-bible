@@ -9,6 +9,7 @@ namespace DataAccess.Repository.IRepository
         IEnumerable<T> GetAll(string? includeProperties = null);
         IQueryable<T> GetRow();
         T Get(Expression<Func<T, bool>> filter, string? includeProperties = null);
+        Task<T> GetAsync(Expression<Func<T, bool>> filter, string? includeProperties = null);
         void Add(T entity);
         Task AddAsync(T entity);
         void AddRange(List<T> entities);

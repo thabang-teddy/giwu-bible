@@ -60,7 +60,7 @@ function AddCapters(bible, book, chapterCount) {
 
     for (var i = 0; i < chapterCount; i++) {
         let chapterNumber = i + 1;
-        $('#chaptersList').append('<div class="menu-item menu-nav" bible="' + bible + '" book="' + book + '" chapter="' + chapterNumber + '">Chapter ' + chapterNumber + '</div>');
+        $('#chaptersList').append('<a href="/Home/Read/' + bible + '/' + book + '/' + chapterNumber + '" class="menu-item menu-nav" bible="' + bible + '" book="' + book + '" chapter="' + chapterNumber + '">Chapter ' + chapterNumber + '</a>');
     }
 
     $('#chaptersList').find('.menu-nav').on("click", function () {
@@ -100,7 +100,7 @@ function getAppdata() {
     return JSON.parse(localStorage.getItem("AppData"));
 }
 
-let localAppData = getSideBarData();
+let localAppData = getAppdata();
 
 if (localAppData.bible != null) {
 
@@ -126,6 +126,7 @@ if (localAppData.bible != null) {
                     $("#chapter-list-menu").addClass("selected-menu-con");
 
                     AddCapters(localAppData.bible, localAppData.book, selectedBook.ChapterCount);
+                    //updateBreadcrumbslink(localAppData.bible, selectedBook., localAppData.chapter);
                 }
 
             }
@@ -133,5 +134,22 @@ if (localAppData.bible != null) {
     }
 }
 
+function updateBreadcrumbslink(bible, book, chapter) {
 
+    let breadcrumbslink = "";
+
+    if (bible != null) {
+        breadcrumbslink = breadcrumbslink + bible;
+    }
+    
+    if (book != null) {
+        breadcrumbslink = breadcrumbslink + book;
+    }
+    
+    if (chapter != null) {
+        breadcrumbslink = breadcrumbslink + chapter;
+    }
+
+    $("#breadcrumbs-con").text(breadcrumbslink);
+}
 

@@ -50,3 +50,15 @@
 .selected-menu-con {
     left: 0px;
 }
+
+a.menu-nav{
+    width:100% !important;
+    display:block;
+    text-decoration:none;
+    color:inherit;
+}
+
+a.menu-nav:hover{
+    background:#999;
+    color:#fff;
+}

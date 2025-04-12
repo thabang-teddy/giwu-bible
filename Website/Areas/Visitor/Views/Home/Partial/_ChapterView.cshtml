@@ -1,0 +1,15 @@
+﻿@model Website.ViewModels.Visitor.VisitorChapterViewModel
+@{
+    Layout = null;
+}
+
+@if (Model != null)
+{
+    for (int i = 0; i < Model.Verses.Count; i++)
+    {
+        <p>
+            <span class="me-2">@Model.Verses[i].Verse</span>
+            <span>@Model.Verses[i].Text</span>
+        </p>
+    }
+}
