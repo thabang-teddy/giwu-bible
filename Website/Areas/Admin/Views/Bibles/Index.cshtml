@@ -28,6 +28,8 @@
                     <td>@bible.Language</td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@bible.Id" class="btn btn-warning">Edit</a>
+                        <a asp-action="EditBooks" asp-route-id="@bible.Id" class="btn btn-warning">Books</a>
+                        <a asp-action="EditChapters" asp-route-id="@bible.Id" class="btn btn-warning">Chapters</a>
                         <a asp-action="Delete" asp-route-id="@bible.Id" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>

@@ -16,13 +16,38 @@ namespace Website.Mapping
             CreateMap<BibleBook, BibleBookViewModel>().ReverseMap();
             CreateMap<Chapter, ChapterViewModel>().ReverseMap();
 
+            CreateMap<BibleBook, BibleBooksViewModel>()
+                .ForMember(dest => dest.BookList, opt => opt.MapFrom(src => AdminBibleBookToList(src.BookList)));
+            
+            CreateMap<BibleBooksViewModel, BibleBook>()
+                .ForMember(dest => dest.BookList, opt => opt.MapFrom(src => JsonConvert.SerializeObject(src.BookList)));
 
             //CreateMap<Bible, VisitorBibleViewModel>()
-            //.ForMember(dest => dest.BobleBooks, opt => opt.MapFrom(src => BibleBookToList(src.BibleBook.BookList)));
+            //.ForMember(dest => dest.BibleBooks, opt => opt.MapFrom(src => BibleBookToList(src.BibleBook.BookList)));
             CreateMap<Bible, VisitorBibleViewModel>()
-                .ForMember(dest => dest.BobleBooks, opt =>
+                .ForMember(dest => dest.BibleBooks, opt =>
                     opt.MapFrom(src => src.BibleBook != null ? BibleBookToList(src.BibleBook.BookList) : new List<VisitorBibleBookViewModel>())
                 );
+        }
+
+        /// <summary>
+        /// Converts a JSON string inside a BibleBook to a list of BibleBookViewModel
+        /// </summary>
+        public static List<BibleBookViewModel> AdminBibleBookToList(string bookList)
+        {
+            if (string.IsNullOrEmpty(bookList))
+                return new List<BibleBookViewModel>();
+
+            try
+            {
+                return JsonConvert.DeserializeObject<List<BibleBookViewModel>>(bookList)
+                       ?? new List<BibleBookViewModel>();
+            }
+            catch (JsonException)
+            {
+                // Log error if needed
+                return new List<BibleBookViewModel>();
+            }
         }
 
         /// <summary>

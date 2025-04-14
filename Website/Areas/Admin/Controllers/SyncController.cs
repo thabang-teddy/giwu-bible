@@ -11,6 +11,7 @@ using SQLitePCL;
 
 namespace Website.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     [Authorize(Roles = "Admin")]
     public class SyncController : Controller
     {

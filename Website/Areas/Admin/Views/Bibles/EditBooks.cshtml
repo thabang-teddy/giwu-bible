@@ -1,0 +1,87 @@
+﻿@model Website.Areas.Admin.ViewModels.Bibles.BibleBooksViewModel
+
+@{
+    ViewData["Title"] = "Edit Books";
+}
+
+
+@section Scripts {
+    <script src="~/js/areas/admin/bible/edite-books.js"></script>
+}
+
+
+<h2>Edit Books</h2>
+
+<div class="hidden d-none">
+    <div class="accordion-item" id="accordion-item-base">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-base" aria-expanded="true" aria-controls="flush-collapse-base">
+                base Title
+            </button>
+        </h2>
+        <div id="flush-collapse-base" class="accordion-collapse collapse show" data-bs-parent="#bible-book-list" style="">
+            <div class="accordion-body">
+                <div class="row g-3">
+                    <div class="col-2">
+                        <input class="form-control" type="number" data-val="true" data-val-required="The Book field is required." id="BookList_base__Book" name="BookList[base].Book"><input name="__Invariant" type="hidden" value="BookList[base].Book">
+                    </div>
+                    <div class="col">
+                        <input class="form-control" type="text" data-val="true" data-val-required="The Name field is required." id="BookList_base__Name" name="BookList[base].Name">
+                    </div>
+                    <div class="col">
+                        <input class="form-control" disabled="" type="number" data-val="true" data-val-required="The ChapterCount field is required." id="BookList_base__ChapterCount" name="BookList[base].ChapterCount"><input name="__Invariant" type="hidden" value="BookList[base].ChapterCount">
+                    </div>
+                </div>
+                <div class="g-3 py-2">
+                    <button type="button" class="btn btn-danger" book-index="base">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card m-4">
+    <div class="card-body">
+        <form asp-action="EditBooks" method="post">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="BibleId" />
+            <div class="accordion accordion-flush mb-4" id="bible-book-list">
+                @if (Model != null && Model.BookList != null && Model.BookList.Any())
+                {
+                    for (int i = 0; i < Model.BookList.Count; i++)
+                    {
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@("flush-collapse-" + @i)" aria-expanded="false" aria-controls="@("flush-collapse-" + @i)">
+                                    @Model.BookList[i].Book - @Model.BookList[i].Name (@Model.BookList[i].ChapterCount)
+                                </button>
+                            </h2>
+                            <div id="@("flush-collapse-" + @i)" class="accordion-collapse collapse" data-bs-parent="#bible-book-list">
+                                <div class="accordion-body">
+                                    <div class="row g-3">
+                                        <div class="col-2">
+                                            <input asp-for="BookList[i].Book" class="form-control">
+                                        </div>
+                                        <div class="col">
+                                            <input asp-for="BookList[i].Name" class="form-control">
+                                        </div>
+                                        <div class="col">
+                                            <input asp-for="BookList[i].ChapterCount" class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="g-3 py-2">
+                                        <button type="button" class="btn btn-danger">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+            <button type="button" class="btn btn-primary" id="add-bible-book-btn">Add New</button>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>

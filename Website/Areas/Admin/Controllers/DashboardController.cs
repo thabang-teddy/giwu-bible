@@ -8,6 +8,7 @@ using Website.Areas.Admin.ViewModels.Dashboard;
 
 namespace Website.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     [Authorize(Roles = "Admin")]
     public class DashboardController : Controller
     {

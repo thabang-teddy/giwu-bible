@@ -10,7 +10,7 @@
             {
                 for (int i = 0; i < Model.Count; i++)
                 {
-                    <div class="menu-item menu-nav" open-menu="book-list-menu" bible="@Model[i].Abbreviation" book-list="@JsonConvert.SerializeObject(Model[i].BobleBooks)">
+                    <div class="menu-item menu-nav" open-menu="book-list-menu" bible="@Model[i].Abbreviation" book-list="@JsonConvert.SerializeObject(Model[i].BibleBooks)">
                         <div class="card col-12 my-2">
                             <div class="card-body">
                                 <h6 class="card-subtitle mb-2 text-body-secondary">@Model[i].Abbreviation</h6>

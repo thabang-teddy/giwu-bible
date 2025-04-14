@@ -54,7 +54,7 @@ namespace Website.Services
                     Copyright = x.Copyright,
                     Language = x.Language,
                     OtherInfo = x.OtherInfo,
-                    BobleBooks = bobleBooks
+                    BibleBooks = bobleBooks
                 };
             }).ToList();
         }

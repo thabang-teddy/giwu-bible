@@ -102,7 +102,7 @@ function getAppdata() {
 
 let localAppData = getAppdata();
 
-if (localAppData.bible != null) {
+if (localAppData != null && localAppData.bible != null) {
 
     let bookList = $("#biblesList").find(".menu-nav[bible='" + localAppData.bible + "']").attr("book-list");
 

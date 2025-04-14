@@ -12,5 +12,7 @@ namespace Website.ViewModels.Auth
         public required string Email { get; set; }
         [Required] 
         public required string Password { get; set; }
+        [Required] 
+        public required string ConfirmedPassword { get; set; }
     }
 }

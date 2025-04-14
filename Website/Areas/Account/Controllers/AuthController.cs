@@ -10,6 +10,7 @@ using Website.ViewModels.Auth;
 
 namespace Website.Areas.Account.Controllers
 {
+    [Area("Account")]
     public class AuthController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -21,30 +22,6 @@ namespace Website.Areas.Account.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             _config = config;
-        }
-
-        public IActionResult Register()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
-        {
-            try
-            {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirtName="" , LastName = "" };
-                var result = await _userManager.CreateAsync(user, model.Password);
-
-                if (!result.Succeeded)
-                    return BadRequest(result.Errors);
-
-                return Ok(new { success = true, message = "User registered successfully!" });
-            }
-            catch (Exception ex)
-            {
-                return Ok(new { success = false, message = "User registered unsuccessful!" });
-            }
         }
 
         public IActionResult Login()

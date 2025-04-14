@@ -6,6 +6,7 @@ using Website.Areas.Admin.ViewModels.Users;
 
 namespace Website.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {

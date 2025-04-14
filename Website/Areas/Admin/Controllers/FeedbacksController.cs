@@ -7,6 +7,7 @@ using Website.Areas.Admin.ViewModels.Feedback;
 
 namespace Website.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     [Authorize(Roles = "Admin")]
     public class FeedbacksController : Controller
     {

@@ -14,7 +14,7 @@ namespace Website.ViewModels.Visitor
         public required string Language { get; set; }
         public string? OtherInfo { get; set; }
 
-        public List<VisitorBibleBookViewModel> BobleBooks { get; set; } = new List<VisitorBibleBookViewModel>();
+        public List<VisitorBibleBookViewModel> BibleBooks { get; set; } = new List<VisitorBibleBookViewModel>();
     }
 
     public class VisitorBibleBookViewModel

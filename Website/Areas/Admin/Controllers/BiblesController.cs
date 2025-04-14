@@ -4,10 +4,12 @@ using DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Newtonsoft.Json;
 using Website.Areas.Admin.ViewModels.Bibles;
 
 namespace Website.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     [Authorize(Roles = "Admin")]
     public class BiblesController : Controller
     {
@@ -73,6 +75,58 @@ namespace Website.Areas.Admin.Controllers
                     _repository.Bible.Update(bible);
                     _repository.Save();
                     return RedirectToAction("Edit", new { id = bible.Id });
+                }
+                catch (Exception ex)
+                {
+                    return View(model);
+                }
+            }
+            return View(model);
+        }
+        
+        public async Task<IActionResult> EditBooks(Guid id)
+        {
+            var bible = _repository.Bible.Get(x => x.Id == id, "BibleBook");
+            if (bible == null) return NotFound();
+
+            var model = _mapper.Map<BibleBooksViewModel>(bible.BibleBook);
+            if (model == null)
+            {
+                model = new()
+                {
+                    BibleId = id
+                };
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditBooks(BibleBooksViewModel model)
+        {
+            if (ModelState.IsValid && model != null && model.BookList != null && model.BookList.Any())
+            {
+                try
+                {
+                    var bibleBooksInDb = _repository.BibleBook.Get(x => x.BibleId == model.BibleId);
+                    if (bibleBooksInDb == null) {
+                        BibleBook newBibleBooks = new()
+                        {
+                            Id = Guid.NewGuid(),
+                            BibleId = model.BibleId,
+                            BookList = JsonConvert.SerializeObject(model.BookList)
+                        };
+                        _repository.BibleBook.Add(newBibleBooks);
+                    }
+                    else
+                    {
+                        var bibleBooks = _mapper.Map<BibleBook>(model);
+
+                        bibleBooksInDb.BookList = JsonConvert.SerializeObject(model.BookList);
+
+                        _repository.BibleBook.Update(bibleBooksInDb);
+                    }
+                    await _repository.SaveChangesAsync();
+                    return RedirectToAction("EditBooks", new { id = model.BibleId });
                 }
                 catch (Exception ex)
                 {
