@@ -1,3 +1,37 @@
+/* base.css or theme.css */
+
+:root {
+    /* Light theme (default) */
+    --bg-color: #F9F9F6;
+    --text-color: #2E2E2E;
+    --text-secondary: #6B6B6B;
+    --accent-color: #8B0000;
+    --accent-secondary: #D4AF37;
+    --link-color: #2F62B3;
+    --card-bg: #FFFFFF;
+    --border-color: #E0E0E0;
+}
+
+html.dark {
+    /* Dark theme overrides */
+    --bg-color: #121212;
+    --text-color: #EAEAEA;
+    --text-secondary: #A0A0A0;
+    --accent-color: #FF6B6B;
+    --accent-secondary: #FFD700;
+    --link-color: #82A4F8;
+    --card-bg: #1E1E1E;
+    --border-color: #2D2D2D;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.card{
+    background-color: var(--card-bg);
+}
 
 .full-vh{
     height:100vh;
@@ -29,7 +63,7 @@
 .menu {
     position: absolute;
     width: 100%;
-    background: #fff;
+    background: var(--card-bg);
     overflow-y: auto;
     padding: 10px;
     height: 100vh;
@@ -44,7 +78,6 @@
 .menu-item {
     cursor: pointer;
     padding: 10px;
-/*    border-bottom: 1px solid #3b4b5a;*/
 }
 
 .selected-menu-con {
@@ -61,4 +94,40 @@ a.menu-nav{
 a.menu-nav:hover{
     background:#999;
     color:#fff;
+}
+
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: .5rem 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+
+.list-group-item-action {
+    width: 100%;
+    color: var(--text-color);
+    text-align: inherit;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+
+}
+
+.nav-link {
+    color: var(--text-color) !important;
+}
+
+table{
+    color: var(--text-color) !important;
+}
+
+input, textarea{
+    color: var(--text-color) !important;
+    background-color: var(--bg-color) !important;
 }
