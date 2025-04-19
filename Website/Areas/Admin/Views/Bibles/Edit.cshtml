@@ -4,64 +4,73 @@
     ViewData["Title"] = "Edit Bible";
 }
 
-<h2>Edit Bible</h2>
-
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="Id" />
-    <div class="form-group">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" required />
+<dev>
+    <div class="card m-4">
+        <div class="card-body" id="breadcrumbs-con">
+            <a asp-controller="Dashboard" asp-action="Index">Dashboard</a> / <a asp-action="Index">Bible List</a> / Edit @Model.Name
+        </div>
     </div>
+    <div class="card m-4">
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" required />
+                </div>
 
-    <div class="form-group">
-        <label asp-for="Abbreviation"></label>
-        <input asp-for="Abbreviation" class="form-control" required />
+                <div class="form-group">
+                    <label asp-for="Abbreviation"></label>
+                    <input asp-for="Abbreviation" class="form-control" required />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Publisher"></label>
+                    <input asp-for="Publisher" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="About"></label>
+                    <input asp-for="About" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Url"></label>
+                    <input asp-for="Url" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="About"></label>
+                    <input asp-for="About" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Language"></label>
+                    <input asp-for="Language" class="form-control" required />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Copyright"></label>
+                    <textarea asp-for="Copyright" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="OtherInfo"></label>
+                    <input asp-for="OtherInfo" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <h3>Root Information</h3>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="RootUrl"></label>
+                    <input asp-for="RootUrl" class="form-control" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label asp-for="Publisher"></label>
-        <input asp-for="Publisher" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="About"></label>
-        <input asp-for="About" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Url"></label>
-        <input asp-for="Url" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="About"></label>
-        <input asp-for="About" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Language"></label>
-        <input asp-for="Language" class="form-control" required />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Copyright"></label>
-        <textarea asp-for="Copyright" class="form-control"></textarea>
-    </div>
-
-    <div class="form-group mb-4">
-        <label asp-for="OtherInfo"></label>
-        <input asp-for="OtherInfo" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <h3>Root Information</h3>
-    </div>
-
-    <div class="form-group mb-4">
-        <label asp-for="RootUrl"></label>
-        <input asp-for="RootUrl" class="form-control" />
-    </div>
-
-    <button type="submit" class="btn btn-primary">Update</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
-</form>
+</dev>

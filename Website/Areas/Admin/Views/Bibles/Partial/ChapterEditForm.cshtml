@@ -1,0 +1,19 @@
+﻿@model Website.Areas.Admin.ViewModels.Bibles.ChapterEditFormViewModel
+
+<form asp-action="ChapterEdit" method="post" id="chapterForm">
+	<input type="hidden" asp-for="Id" />
+	<input type="hidden" asp-for="Book" />
+	<div class="row mb-3">
+		<div class="col-12 pb-3">
+			<label asp-for="Number">Chapter</label>
+			<input class="form-control" asp-for="Number" />
+		</div>
+		<div class="col-12 py-3">
+			<label asp-for="Verses">Verses</label>
+			<textarea class="form-control" asp-for="Verses" rows="10"></textarea>
+		</div>
+	</div>
+
+	<button type="submit" class="btn btn-primary">Update</button>
+	<button type="button" class="btn btn-secondary">Clear</button>
+</form>

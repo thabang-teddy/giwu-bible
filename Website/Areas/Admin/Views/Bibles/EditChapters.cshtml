@@ -1,0 +1,61 @@
+﻿@model Website.Areas.Admin.ViewModels.Bibles.ChapterViewModel
+
+@{
+	ViewData["Title"] = "Edit Books";
+}
+
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+	<script src="~/js/areas/admin/bible/edite-chapters.js"></script>
+}
+
+<input type="hidden" asp-for="BibleId" />
+<input type="hidden" asp-for="BibleBookId" />
+
+<div>
+	<div class="card m-4">
+		<div class="card-body" id="breadcrumbs-con">
+			<a asp-controller="Dashboard" asp-action="Index">Dashboard</a> / <a asp-action="Index">Bible List</a> / <a asp-action="Edit" asp-route-id="@Model.BibleId">@Model.BibleName</a> / Edit Chapters
+		</div>
+	</div>
+	
+	<div class="card m-4">
+		<div class="card-body row">
+			<div class="col-3">
+				<div class="mb-4">
+					<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Book List</button>
+					<ul data-bs-spy="scroll" class="dropdown-menu min-vh-100">
+						@if (Model.BookList!= null && Model.BookList.Any())
+						{
+							for (int bi = 0; bi < Model.BookList.Count; bi++)
+							{
+								<li
+									class="book-list-item"
+									book-number="@Model.BookList[bi].Book"
+									book-chapter-count="@Model.BookList[bi].ChapterCount"
+									book-name="@Model.BookList[bi].Name"
+								>
+									<span class="dropdown-item">
+										@Model.BookList[bi].Book - @Model.BookList[bi].Name (@Model.BookList[bi].ChapterCount)
+									</span>
+								</li>
+							}
+						}
+					</ul>
+				</div>
+				<div class="list-group" id="chaptersList" role="tablist"></div>
+			</div>
+			<div class="col">
+				<div>
+					<a asp-action="Index" class="btn btn-secondary">Cancel</a> <span id="bible-book-name"></span>
+				</div>
+				<h1 id="bible-book-name"></h1>
+				<div class="tab-content mb-3" id="nav-tabContent">
+					<div class="tab-pane fade" id="list-edit-chapter" role="tabpanel" aria-labelledby="list-edit-chapter-list">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
