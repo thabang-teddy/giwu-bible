@@ -17,15 +17,23 @@ namespace Website.Areas.Visitor.Controllers
     public class HomeController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly AppDataService _appDataService;
 
-        public HomeController(IUnitOfWork unitOfWork, IMapper mapper)
+        public HomeController(
+            IUnitOfWork unitOfWork,
+            AppDataService appDataService,
+            IMapper mapper
+        )
         {
             _unitOfWork = unitOfWork;
+            _appDataService = appDataService;
         }
 
         public IActionResult Index()
         {
-            return View();
+
+            List<VisitorBibleViewModel> biblesViewModel = _appDataService.GetGlogalBibleList();
+            return View(biblesViewModel.FirstOrDefault());
         }
 
         [HttpGet("[Controller]/read/{bible}/{book}/{chapter}")]
