@@ -6,8 +6,6 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: giwu_website
-    depends_on:
-      - sqlserver
     environment:
       - ASPNETCORE_ENVIRONMENT=Staging
     ports:

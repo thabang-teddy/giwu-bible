@@ -1,14 +1,11 @@
 version: '3.8'
 
 services:
-  sqlserver:
   website:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: giwu_website
-    depends_on:
-      - sqlserver
     environment:
       - ASPNETCORE_ENVIRONMENT=UAT
     ports:
