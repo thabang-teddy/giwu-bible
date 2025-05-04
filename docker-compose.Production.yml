@@ -1,20 +1,6 @@
 version: '3.8'
 
 services:
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    container_name: giwu_sqlserver
-    volumes:
-      - giwu_data:/var/opt/mssql
-      - giwu_data:/var/opt/sqlserver/data
-      - giwu_logs:/var/opt/sqlserver/log
-      - giwu_backup:/var/opt/sqlserver/backup
-    environment:
-      SA_PASSWORD: "N5dK6sbYG287"
-      ACCEPT_EULA: "Y"
-    networks:
-      - giwu_net
-
   website:
     build:
       context: .
@@ -26,13 +12,3 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
     ports:
       - "8080:8111"
-    networks:
-      - giwu_net
-
-volumes:
-  giwu_data:
-  giwu_logs:
-  giwu_backup:
-
-networks:
-  giwu_net:

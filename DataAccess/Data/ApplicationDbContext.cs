@@ -34,5 +34,4 @@ namespace DataAccess.Data
 
         }
     }
-
 }

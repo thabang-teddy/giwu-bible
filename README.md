@@ -28,7 +28,8 @@ In the `Website` project (`appsettings.json`), define your connection string:
 Run the following command from the **root directory** where the `.sln` file is located:
 
 ```sh
-dotnet ef migrations add InitialCreate --project DataAccess --startup-project Website --output-dir Migrations
+dotnet ef migrations add InitialCreate --project DataAccess --startup-project Website --output-dir Migrations --context ApplicationDbContext
+
 ```
 
 - `--project DataAccess`: Saves the migration in `DataAccess`
@@ -49,11 +50,12 @@ dotnet ef database update --project DataAccess --startup-project Website
 ### 🎯 **Summary of Commands**
 1. **Create migration**:
    ```sh
-   dotnet ef migrations add InitialCreate --project DataAccess --startup-project Website --output-dir Migrations
+   dotnet ef migrations add InitialCreate --project DataAccess --startup-project Website --output-dir Migrations --context ApplicationDbContext
+   
    ```
 2. **Apply migration**:
    ```sh
-   dotnet ef database update --project DataAccess --startup-project Website
+   dotnet ef database update --project DataAccess --startup-project Website --context ApplicationDbContext
    ```
 
 # docker
@@ -126,7 +128,8 @@ cd $GIT_WORK_TREE
 docker-compose -f docker-compose.Production.yml up --build -d
 
 Then make the script executable:
-```ba
+```bash
+chmod +x /var/www/giwubible.git/hooks/post-receive
 ```
 
 ---

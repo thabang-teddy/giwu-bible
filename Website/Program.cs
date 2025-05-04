@@ -14,11 +14,13 @@ try
     // Add services to the container.
     builder.Services.AddControllersWithViews();
 
-    // Configure SQL Server from connection string in config
-    builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
     // Configure Sqlite from connection string in config
+    var dbPath = builder.Configuration.GetConnectionString("DefaultConnection")!
+        .Replace("Data Source=", "").Trim();
+
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
     builder.Services.AddDbContext<SqliteDbContext>(options =>
         options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection")));
 
@@ -44,15 +46,20 @@ try
         var services = scope.ServiceProvider;
         try
         {
+            if (!File.Exists(dbPath))
+            {
+                Console.WriteLine("SQLite application database file not found: " + dbPath);
+            }
+
             var context = services.GetRequiredService<ApplicationDbContext>();
             context.Database.Migrate();
 
-            Console.WriteLine("MyMQL databases have connected and responding.");
+            Console.WriteLine("SQLite application database connected and migrated.");
         }
         catch (Exception ex)
         {
             // Log the error or handle it (optional)
-            Console.WriteLine("MyMQL databases connected failed: " + ex.Message);
+            Console.WriteLine("SQLite application connection failed: " + ex.Message);
             throw;
         }
 

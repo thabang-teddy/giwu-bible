@@ -24,9 +24,9 @@ RUN dotnet publish 'Website.csproj' -c Release -o /app/publish
 # Stage 3: run
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 ENV ASPNETCORE_HTTP_PORTS=8111
-ENV ASPNETCORE_ENVIRONMENT=Staging
+# ENV ASPNETCORE_ENVIRONMENT=Staging
 # ENV ASPNETCORE_ENVIRONMENT=UAT
-# ENV ASPNETCORE_ENVIRONMENT=Production
+ENV ASPNETCORE_ENVIRONMENT=Production
 EXPOSE 8111
 WORKDIR /app
 COPY --from=publish /app/publish .
