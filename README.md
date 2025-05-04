@@ -163,9 +163,9 @@ Deploying to /var/www/giwubible-live...
 # git
 
    ```sh
-   git remote set-url production ssh://your-user@your-vps-ip/var/www/giwubible.git
+   git remote set-url production ssh://deployer@your-vps-ip/var/www/giwubible.git
    ---
-   git remote add production ssh://your-user@your-vps-ip/var/www/giwubible.git
+   git remote add production ssh://deployer@your-vps-ip/var/www/giwubible.git
    ---
    git remote remove production
    ---
