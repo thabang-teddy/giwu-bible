@@ -76,11 +76,100 @@ dotnet ef database update --project DataAccess --startup-project Website
    ---
    docker compose -f docker-compose.Production.yml up --build  -d
    ```
- 
+Using **Git hooks** to automatically deploy your website is a great idea — especially for VPS-based workflows.
+
+Here’s how to set up **automatic deployment** using a `post-receive` hook on your VPS:
+
+---
+
+## 🚀 Git Hook Deployment Guide
+
+### 🎯 Goal:
+Push to a remote Git repo on your VPS → Automatically updates your Laravel / React / .NET website.
+
+---
+
+### 🗂️ VPS Setup: Create a Bare Git Repo
+
+```bash
+cd /var/www
+mkdir giwubible.git
+cd giwubible.git
+git init --bare
+```
+
+---
+
+### 🔧 Create `post-receive` Hook
+
+```bash
+nano /var/www/giwubible.git/hooks/post-receive
+---
+
+---
+```bash
+#!/bin/bash
+
+GIT_WORK_TREE=/var/www/giwubible-production
+GIT_DIR=/var/www/giwubible .git
+
+echo "Deploying to $GIT_WORK_TREE..."
+
+# Checkout the latest code
+mkdir -p $GIT_WORK_TREE
+git --work-tree=$GIT_WORK_TREE --git-dir=$GIT_DIR checkout -f
+
+# Go into the deployment folder
+cd $GIT_WORK_TREE
+
+# Run Docker Compose build and up
+docker-compose -f docker-compose.Production.yml up --build -d
+
+Then make the script executable:
+```ba
+```
+
+---
+
+### 💻 Local Dev Machine: Add Remote
+
+```bash
+git remote add live ssh://user@your-vps-ip/var/www/giwubible.git
+```
+
+Then deploy with:
+```bash
+git push live master
+```
+
+---
+
+### ✅ Output on push should look like:
+
+```
+Counting objects: ...
+...
+Deploying to /var/www/giwubible-live...
+```
+
+---
+
+### 🔐 Permissions Tips:
+- Make sure your VPS user has SSH access and write permission to `/var/www/giwubible-live`.
+- You might want to `chown -R www-data:www-data` after deployment if using Nginx/Apache.
+
+---
+
 # git
 
    ```sh
-   git push live master
+   git remote set-url production ssh://your-user@your-vps-ip/var/www/giwubible.git
+   ---
+   git remote add production ssh://your-user@your-vps-ip/var/www/giwubible.git
+   ---
+   git remote remove production
+   ---
+   git push production master
    ```
 
 Now your database should be updated with the new schema! 🚀

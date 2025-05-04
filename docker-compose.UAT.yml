@@ -23,7 +23,7 @@ services:
     depends_on:
       - sqlserver
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=UAT
     ports:
       - "8080:8111"
     networks:

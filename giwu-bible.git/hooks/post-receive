@@ -1,0 +1,16 @@
+#!/bin/bash
+
+GIT_WORK_TREE=/var/www/giwubible -production
+GIT_DIR=/var/www/giwubible .git
+
+echo "Deploying to $GIT_WORK_TREE..."
+
+# Checkout the latest code
+mkdir -p $GIT_WORK_TREE
+git --work-tree=$GIT_WORK_TREE --git-dir=$GIT_DIR checkout -f
+
+# Go into the deployment folder
+cd $GIT_WORK_TREE
+
+# Run Docker Compose build and up
+docker-compose -f docker-compose.yml up --build -d
