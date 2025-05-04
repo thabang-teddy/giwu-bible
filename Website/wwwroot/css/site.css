@@ -132,3 +132,9 @@ input, textarea{
     color: var(--text-color) !important;
     background-color: var(--bg-color) !important;
 }
+
+.selected-menu-item {
+    /*    padding: .5rem 1rem;*/
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}

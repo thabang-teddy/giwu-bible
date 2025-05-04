@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: giwu_sqlserver
+    ports:
+      - "8100:1433"
+    volumes:
+      - giwu_sql_mssql:/var/opt/mssql
+      - giwu_sql_data:/var/opt/sqlserver/data
+      - giwu_sql_logs:/var/opt/sqlserver/log
+      - giwu_sql_backup:/var/opt/sqlserver/backup
+    environment:
+      SA_PASSWORD: "N5dK6sbYG287"
+      ACCEPT_EULA: "Y"
+
+volumes:
+  giwu_sql_mssql:
+  giwu_sql_data:
+  giwu_sql_logs:
+  giwu_sql_backup:

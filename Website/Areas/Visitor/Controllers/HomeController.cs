@@ -40,7 +40,7 @@ namespace Website.Areas.Visitor.Controllers
         public async Task<IActionResult> Read(string bible, int book, int chapter)
         {
             var selectedBibleBook = await _unitOfWork.Bible.GetRow()
-                .Where(x => x.Abbreviation.ToLower() == bible)
+                .Where(x => x.Abbreviation.ToLower() == bible.ToLower())
                 .Include(x => x.BibleBook)
                 .FirstOrDefaultAsync();
 

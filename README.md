@@ -56,4 +56,31 @@ dotnet ef database update --project DataAccess --startup-project Website
    dotnet ef database update --project DataAccess --startup-project Website
    ```
 
+# docker
+2. **docker**:
+
+   ```sh
+   docker build -t giwu_website_1 .
+
+   ---
+
+   docker run --name my-giwu -p 8080:8111 giwu_website_1
+   ```
+2. **docker compose**:
+   ```sh
+   docker compose -f docker-compose.dev.yml up --build -d
+   ---
+   docker compose -f docker-compose.Staging.yml up --build -d
+   ---
+   docker compose -f docker-compose.UAT.yml up --build -d
+   ---
+   docker compose -f docker-compose.Production.yml up --build  -d
+   ```
+ 
+# git
+
+   ```sh
+   git push live master
+   ```
+
 Now your database should be updated with the new schema! 🚀

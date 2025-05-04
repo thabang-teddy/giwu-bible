@@ -1,4 +1,25 @@
 ﻿
+function saveAppdata(bible, book, chapter) {
+    if (bible == null && book == null && chapter == null) {
+        localStorage.removeItem("AppData");
+    }
+    else {
+        let AppData = {
+            bible: bible,
+            book: book,
+            chapter: chapter
+        };
+
+        localStorage.setItem("AppData", JSON.stringify(AppData));
+    }
+}
+
+function getAppdata() {
+    return JSON.parse(localStorage.getItem("AppData"));
+}
+
+let localAppData = getAppdata();
+
 // Data structure
 $(".menu-nav").on("click", function () {
     let openMenu = $(this).attr("open-menu");
@@ -8,7 +29,7 @@ $(".menu-nav").on("click", function () {
 
     if (openMenu == "book-list-menu" && isBackBtn == null) {
 
-        let bible = $(this).attr("bible");
+        let bible = $(this).attr("bible-data-abbreviation");
         let bookList = $(this).attr("bible-data-list");
 
         if (openMenu != null && openMenu != "" && bookList != null && bookList != "") {
@@ -37,8 +58,10 @@ function AddBooks(bible, bookList) {
 
     $('#booksList').html("")
 
+    $('#booksList').append('<p class="menu-item rounded selected-menu-item">' + bible + ' - Books</p>');
+
     for (var i = 0; i < bookList.length; i++) {
-        $('#booksList').append('<div class="menu-item menu-nav" open-menu="chapter-list-menu" bible="' + bible + '" book="' + bookList[i].Book + '" chapter-count="' + bookList[i].ChapterCount + '">' + bookList[i].Book + ' - ' + bookList[i].Name + ' (' + bookList[i].ChapterCount + ')</div>')
+        $('#booksList').append('<div class="menu-item menu-nav" open-menu="chapter-list-menu" bible="' + bible + '" book="' + bookList[i].Book + '" book-name="' + bookList[i].Name + '" chapter-count="' + bookList[i].ChapterCount + '">' + bookList[i].Book + ' - ' + bookList[i].Name + ' (' + bookList[i].ChapterCount + ')</div>')
     }
 
     $('#booksList').find('.menu-nav').on("click", function () {
@@ -48,19 +71,24 @@ function AddBooks(bible, bookList) {
 
         let bible = $(this).attr("bible");
         let book = JSON.parse($(this).attr("book"));
+        let bookName = $(this).attr("book-name");
         let chapterCount = $(this).attr("chapter-count");
 
-        AddCapters(bible, book, chapterCount);
+        AddCapters(bible, book, chapterCount, bookName);
         saveAppdata(bible, book, null);
     })
 }
 
-function AddCapters(bible, book, chapterCount) {
+function AddCapters(bible, book, chapterCount, bookName = null) {
     $('#chaptersList').html("");
+
+    $('#chaptersList').append('<p class="menu-item rounded selected-menu-item">' + bible + ' - ' + bookName + ' - Chapters</p>');
 
     for (var i = 0; i < chapterCount; i++) {
         let chapterNumber = i + 1;
-        $('#chaptersList').append('<a href="/Home/Read/' + bible + '/' + book + '/' + chapterNumber + '" class="menu-item menu-nav" bible="' + bible + '" book="' + book + '" chapter="' + chapterNumber + '">Chapter ' + chapterNumber + '</a>');
+        let isSelectedMenuItem = localAppData != null && bible == localAppData.bible && book == localAppData.book && chapterNumber == localAppData.chapter ? "selected-menu-item" : "";
+
+        $('#chaptersList').append('<a href="/Home/Read/' + bible + '/' + book + '/' + chapterNumber + '" class="menu-item menu-nav rounded ' + isSelectedMenuItem + '" bible="' + bible + '" book="' + book + '" chapter="' + chapterNumber + '">Chapter ' + chapterNumber + '</a>');
     }
 
     $('#chaptersList').find('.menu-nav').on("click", function () {
@@ -71,27 +99,6 @@ function AddCapters(bible, book, chapterCount) {
         saveAppdata(bible, book, chapter);
     })
 }
-
-function saveAppdata(bible, book, chapter) {
-    if (bible == null && book == null && chapter == null) {
-        localStorage.removeItem("AppData");
-    }
-    else {
-        let AppData = {
-            bible: bible,
-            book: book,
-            chapter: chapter
-        };
-
-        localStorage.setItem("AppData", JSON.stringify(AppData));
-    }
-}
-
-function getAppdata() {
-    return JSON.parse(localStorage.getItem("AppData"));
-}
-
-let localAppData = getAppdata();
 
 if (localAppData != null && localAppData.bible != null) {
 
@@ -145,7 +152,9 @@ if (localAppData != null && localAppData.bible != null) {
                         $(".bible-data-read").attr("href", bibleDataRead).removeClass("d-none");
                     }
 
-                    AddCapters(localAppData.bible, localAppData.book, selectedBook.ChapterCount);
+                    let bookName = selectedBook.Name;
+
+                    AddCapters(localAppData.bible, localAppData.book, selectedBook.ChapterCount, bookName);
                     //updateBreadcrumbslink(localAppData.bible, selectedBook., localAppData.chapter);
                 }
 

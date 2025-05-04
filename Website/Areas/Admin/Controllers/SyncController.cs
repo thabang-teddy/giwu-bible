@@ -28,7 +28,7 @@ namespace Website.Areas.Admin.Controllers
             return View();
         }
         public async Task<IActionResult> SQliteOne()
-         {
+        {
             try
             {
                 List<Bible> bibles = new List<Bible>();
@@ -124,7 +124,6 @@ namespace Website.Areas.Admin.Controllers
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }

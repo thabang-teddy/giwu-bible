@@ -13,12 +13,14 @@ try
 
     // Add services to the container.
     builder.Services.AddControllersWithViews();
+
+    // Configure SQL Server from connection string in config
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+    // Configure Sqlite from connection string in config
     builder.Services.AddDbContext<SqliteDbContext>(options =>
-    options.UseSqlite("Data Source=../DataAccess/Data/Syncdata/sqlite/bible-sqlite.db"));
-
+        options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection")));
 
     builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
@@ -44,27 +46,27 @@ try
         {
             var context = services.GetRequiredService<ApplicationDbContext>();
             context.Database.Migrate();
+
+            Console.WriteLine("MyMQL databases have connected and responding.");
         }
         catch (Exception ex)
         {
             // Log the error or handle it (optional)
-            Console.WriteLine("Database migration failed: " + ex.Message);
+            Console.WriteLine("MyMQL databases connected failed: " + ex.Message);
             throw;
         }
-    }
 
-    using (var scope = app.Services.CreateScope())
-    {
         try
         {
             var sqlite = scope.ServiceProvider.GetRequiredService<SqliteDbContext>();
             var connected = await sqlite.BibleVersionKeys.AnyAsync();
-            Console.WriteLine("SQLite is connected and responding.");
+
+            Console.WriteLine("SQLite databases have connected and responding.");
         }
         catch (Exception ex)
         {
             // Log the error or handle it (optional)
-            Console.WriteLine("SQLite connected failed: " + ex.Message);
+            Console.WriteLine("SQLite databases connected failed: " + ex.Message);
             throw;
         }
     }
@@ -95,6 +97,6 @@ catch (Exception ex)
 {
     // Log the error or handle it (optional)
     Console.WriteLine("Database migration failed: " + ex.Message);
-    throw;
+    //throw;
 
 }
