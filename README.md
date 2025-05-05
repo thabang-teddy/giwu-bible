@@ -93,6 +93,16 @@ Push to a remote Git repo on your VPS → Automatically updates your Laravel / R
 
 ### 🗂️ VPS Setup: Create a Bare Git Repo
 
+
+Create the User
+```bash
+sudo adduser deployer
+sudo usermod -aG sudo deployer
+sudo chown -R deployer:deployer /var/www
+
+sudo usermod -aG docker deployer
+```
+
 ```bash
 cd /var/www
 mkdir giwubible.git
@@ -113,7 +123,7 @@ nano /var/www/giwubible.git/hooks/post-receive
 #!/bin/bash
 
 GIT_WORK_TREE=/var/www/giwubible-production
-GIT_DIR=/var/www/giwubible .git
+GIT_DIR=/var/www/giwubible.git
 
 echo "Deploying to $GIT_WORK_TREE..."
 
