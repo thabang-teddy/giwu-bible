@@ -10,3 +10,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
     ports:
       - "8080:8111"
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    external: true
