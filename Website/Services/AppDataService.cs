@@ -56,7 +56,7 @@ namespace Website.Services
                     OtherInfo = x.OtherInfo,
                     BibleBooks = bobleBooks
                 };
-            }).ToList();
+            }).Where(x => x.BibleBooks != null && x.BibleBooks.Any(x => x.ChapterCount > 0)).ToList();
         }
 
         public void RegenerateBiblelist()
