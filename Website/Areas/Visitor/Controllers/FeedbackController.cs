@@ -6,6 +6,7 @@ using Website.ViewModels.Visitor;
 
 namespace Website.Areas.Visitor.Controllers
 {
+    [Area("Visitor")]
     public class FeedbackController : Controller
     {
         private readonly IUnitOfWork _repository;
