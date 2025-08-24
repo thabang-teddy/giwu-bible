@@ -182,3 +182,15 @@ function updateBreadcrumbslink(bible, book, chapter) {
     $("#breadcrumbs-con").text(breadcrumbslink);
 }
 
+$(".toggle-main-btn").on("click", function () {
+    if ($(".main-left-con").hasClass("main-left-con-open")) {
+        $(".main-left-con").removeClass("main-left-con-open");
+        $(".main-left-con").addClass("main-left-con-closed");
+    } else {
+        $(".main-left-con").addClass("main-left-con-open");
+        $(".main-left-con").removeClass("main-left-con-closed");
+    }
+})
+
+
+

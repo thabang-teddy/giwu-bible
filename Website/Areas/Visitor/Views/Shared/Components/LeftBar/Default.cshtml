@@ -1,9 +1,10 @@
 ﻿@using Newtonsoft.Json
 @model List<Website.ViewModels.Visitor.VisitorBibleViewModel>
 
-<div class="main-left-con m-0 p-0 col-2 full-vh overflow-hidden">
+<div class="main-left-con m-0 p-0 col-2 full-vh overflow-hidden main-left-con-closed">
     <!-- Bibles List -->
     <div class="menu selected-menu-con" id="bible-list-menu">
+        <button type="button" class="btn btn-secondary toggle-main-btn float-end" back-btn="True" open-menu="book-list-menu"><i class="fa-solid fa-xmark"></i></button>
         <h3>Bibles</h3>
         <div id="biblesList">
             @if (Model != null && Model.Any())
@@ -38,6 +39,7 @@
 
     <!-- Books List -->
     <div class="menu" id="book-list-menu">
+        <button type="button" class="btn btn-secondary toggle-main-btn float-end" back-btn="True" open-menu="book-list-menu"><i class="fa-solid fa-xmark"></i></button>
         <button type="button" class="btn btn-secondary menu-nav" back-btn="True" open-menu="bible-list-menu"><i class="fa fa-arrow-left"></i> Back</button>
         <div id="booksList" class="my-4">
         </div>
@@ -45,6 +47,7 @@
 
     <!-- Chapters List -->
     <div class="menu" id="chapter-list-menu">
+        <button type="button" class="btn btn-secondary toggle-main-btn float-end" back-btn="True" open-menu="book-list-menu"><i class="fa-solid fa-xmark"></i></button>
         <button type="button" class="btn btn-secondary menu-nav" back-btn="True" open-menu="book-list-menu"><i class="fa fa-arrow-left"></i> Back</button>
         <div id="chaptersList" class="my-4">
         </div>

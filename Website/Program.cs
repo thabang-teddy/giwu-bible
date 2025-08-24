@@ -1,3 +1,4 @@
+
 using DataAccess.Repository.IRepository;
 using DataAccess.Repository;
 using DataAccess.Data;
@@ -26,7 +27,8 @@ try
 
     builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
-    builder.Services.ConfigureApplicationCookie(options => {
+    builder.Services.ConfigureApplicationCookie(options =>
+    {
         options.LoginPath = $"/Account/Auth/Login";
         options.LogoutPath = $"/Account/Auth/Logout";
         options.AccessDeniedPath = $"/Account/Auth/AccessDenied";
@@ -107,3 +109,4 @@ catch (Exception ex)
     //throw;
 
 }
+

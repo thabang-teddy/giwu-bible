@@ -57,6 +57,7 @@ body {
     height: 100vh;
     position: relative;
 }
+
 #reading-con{
     overflow-y: auto;
 }
@@ -137,4 +138,26 @@ input, textarea{
     /*    padding: .5rem 1rem;*/
     color: var(--text-color);
     background-color: var(--bg-color);
+}
+
+
+@media (max-width: 768px) {
+    .main-left-con {
+        width:90vw;
+        position: fixed;
+        left: 0;
+        z-index:50;
+    }
+
+    .main-left-con-open {
+        left: 0vw;  
+    }
+
+    .main-left-con-closed {
+        left: -100vw;
+    }
+
+    .navbar-nav{
+
+    }
 }
