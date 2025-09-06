@@ -140,6 +140,10 @@ input, textarea{
     background-color: var(--bg-color);
 }
 
+.toggle-main-btn{
+    display: none;
+}
+
 
 @media (max-width: 768px) {
     .main-left-con {
@@ -159,5 +163,8 @@ input, textarea{
 
     .navbar-nav{
 
+    }
+    .toggle-main-btn {
+        display: block;
     }
 }
