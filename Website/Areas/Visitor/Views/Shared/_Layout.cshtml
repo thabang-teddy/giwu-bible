@@ -11,7 +11,7 @@
     </head>
     <body class="full-vh full-vw m-0 p-0 row overflow-hidden">
         @await Component.InvokeAsync("LeftBar")
-        <div class="main-left full-vh m-0 p-0 col-md-10 col-12 flex-column overflow-auto" role="main">
+        <div class="main-left full-vh m-0 p-0 col-md-9 col-12 flex-column overflow-auto" role="main">
             @await Component.InvokeAsync("Header")
             @RenderBody()
         </div>

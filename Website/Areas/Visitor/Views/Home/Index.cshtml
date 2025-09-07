@@ -14,9 +14,9 @@
                     <div class="selected-bible-text mb-4 ml-2">
                         <h6 class="mb-2 text-body-secondary bible-data-abbreviation">@Model.Abbreviation</h6>
                         <h5 class="bible-data-name">@Model.Name</h5>
-                        @if (!string.IsNullOrWhiteSpace(Model.Url))
+                        @if (!string.IsNullOrWhiteSpace(Model.Url) && Model.Url != "#")
                         {
-                            <a href="#" class="card-link bible-data-url" target="_blank">[ Open Source ]</a>
+                            <a href="@Model.Url" class="card-link bible-data-url" target="_blank">[ Open Source ]</a>
                         }
                         <a href="#" class="card-link bible-data-read d-none">[ Continue Reading ]</a>
                     </div>
