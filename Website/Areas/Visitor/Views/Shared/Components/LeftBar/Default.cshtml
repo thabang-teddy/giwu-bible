@@ -12,7 +12,7 @@
                 for (int i = 0; i < Model.Count; i++)
                 {
                     <div 
-                        class="menu-item menu-nav"
+                        class="menu-item menu-nav m-0 p-0"
                         open-menu="book-list-menu"
                         bible-data-abbreviation="@Model[i].Abbreviation"
                         bible-data-name="@Model[i].Name"
@@ -24,7 +24,7 @@
                         bible-data-other-info="@Model[i].OtherInfo"
                         bible-data-list="@JsonConvert.SerializeObject(Model[i].BibleBooks)"
                     >
-                        <div class="card col-12 my-2">
+                        <div class="card col-12 my-2 secondary-bg">
                             <div class="card-body">
                                 <h6 class="card-subtitle mb-2 text-body-secondary bible-abbreviation" data-info>@Model[i].Abbreviation</h6>
                                 <h5 class="card-title bible-name" >@Model[i].Name</h5>

@@ -82,6 +82,10 @@ body {
     padding: 10px;
 }
 
+.secondary-bg {
+    background-color: var(--bg-color);
+}
+
 .selected-menu-con {
     left: 0px;
 }
@@ -93,9 +97,9 @@ a.menu-nav{
     color:inherit;
 }
 
-a.menu-nav:hover{
-    background:#999;
-    color:#fff;
+a.menu-nav:hover, #booksList .menu-item.menu-nav:hover {
+    background: #999;
+    color: #fff;
 }
 
 

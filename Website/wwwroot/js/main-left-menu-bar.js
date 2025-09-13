@@ -61,7 +61,7 @@ function AddBooks(bible, bookList) {
     $('#booksList').append('<p class="menu-item rounded selected-menu-item">' + bible + ' - Books</p>');
 
     for (var i = 0; i < bookList.length; i++) {
-        $('#booksList').append('<div class="menu-item menu-nav" open-menu="chapter-list-menu" bible="' + bible + '" book="' + bookList[i].Book + '" book-name="' + bookList[i].Name + '" chapter-count="' + bookList[i].ChapterCount + '">' + bookList[i].Book + ' - ' + bookList[i].Name + ' (' + bookList[i].ChapterCount + ')</div>')
+        $('#booksList').append('<div class="menu-item menu-nav rounded" open-menu="chapter-list-menu" bible="' + bible + '" book="' + bookList[i].Book + '" book-name="' + bookList[i].Name + '" chapter-count="' + bookList[i].ChapterCount + '">' + bookList[i].Book + ' - ' + bookList[i].Name + ' (' + bookList[i].ChapterCount + ')</div>')
     }
 
     $('#booksList').find('.menu-nav').on("click", function () {
