@@ -12,7 +12,7 @@ namespace DataAccess.Data.SeedData
             {
                 Id = "e756c817-bcb7-47b2-8e7b-52a6b3065cf4",
                 UserName = "admin",
-                FirtName = "Admin",
+                FirstName = "Admin",
                 LastName = "Giwu",
                 Email = "admin@giwu.com",
                 NormalizedUserName = "ADMIN",

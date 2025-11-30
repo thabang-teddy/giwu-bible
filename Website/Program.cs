@@ -35,6 +35,7 @@ try
     });
 
     builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+    builder.Services.AddTransient<IEmailSender, EmailSender>();
 
     builder.Services.AddScoped<AppDataService>();
 

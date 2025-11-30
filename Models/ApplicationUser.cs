@@ -8,7 +8,7 @@ namespace Models
     public class ApplicationUser : IdentityUser
     {
         [Required]
-        public required string FirtName { get; set; }
+        public required string FirstName { get; set; }
         [Required]
         public required string LastName { get; set; }
 

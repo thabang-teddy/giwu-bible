@@ -23,7 +23,7 @@ namespace Website.Areas.Admin.Controllers
             var users = _userManager.Users.Select(u => new UserViewModel
             {
                 Id = u.Id,
-                FirstName = u.FirtName,
+                FirstName = u.FirstName,
                 LastName = u.LastName,
                 Email = u.Email,
                 PhoneNumber = u.PhoneNumber,
@@ -50,7 +50,7 @@ namespace Website.Areas.Admin.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    FirtName = model.FirstName,
+                    FirstName = model.FirstName,
                     LastName = model.LastName,
                     PhoneNumber = model.PhoneNumber,
                     AppData = model.AppData,
@@ -77,7 +77,7 @@ namespace Website.Areas.Admin.Controllers
             var model = new UserViewModel
             {
                 Id = user.Id,
-                FirstName = user.FirtName,
+                FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
@@ -97,7 +97,7 @@ namespace Website.Areas.Admin.Controllers
                 var user = await _userManager.FindByIdAsync(model.Id!);
                 if (user == null) return NotFound();
 
-                user.FirtName = model.FirstName;
+                user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
                 user.Email = model.Email;
                 user.UserName = model.Email;
@@ -125,7 +125,7 @@ namespace Website.Areas.Admin.Controllers
             return View(new UserViewModel
             {
                 Id = user.Id,
-                FirstName = user.FirtName,
+                FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email
             });
