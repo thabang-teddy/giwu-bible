@@ -1,65 +1,16 @@
-﻿@model Website.ViewModels.Visitor.VisitorBibleViewModel
+﻿<div class="row g-0">
+    <aside class="col-md-3 border-end p-3">
+        <h6 class="text-uppercase text-muted">Books</h6>
+        <ul id="bookList" class="list-group list-group-flush"></ul>
+    </aside>
 
-@{
-    ViewData["Title"] = "Home Page";
-}
+    <section class="col-md-6 p-4" id="chapterContent">
+        <h2 id="chapterTitle"></h2>
+        <div id="verses"></div>
+    </section>
 
-<div class="container-fluid">
-
-    <div class="col-11 col-md-12 p-3 my-4 mx-auto" id="chapter-reading-con">
-        @if (Model != null)
-        {
-            <div id="main-card" class="row shadow rounded p-3 mb-3">
-                <div class="col-12 col-md-8 d-flex align-items-end">
-                    <div class="selected-bible-text mb-4 ml-2">
-                        <h6 class="mb-2 text-body-secondary bible-data-abbreviation">@Model.Abbreviation</h6>
-                        <h5 class="bible-data-name">@Model.Name</h5>
-                        @if (!string.IsNullOrWhiteSpace(Model.Url) && Model.Url != "#")
-                        {
-                            <a href="@Model.Url" class="card-link bible-data-url" target="_blank">[ Open Source ]</a>
-                        }
-                        <a href="#" class="card-link bible-data-read d-none">[ Continue Reading ]</a>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 d-flex align-items-center justify-content-center">
-                    <img src="/image/bible-image.png" class="img-fluid rounded shadow-sm bible-data-image" alt="@Model.Name" style="height: 100%;" />
-                </div>
-            </div>
-
-            <div class="p-3">
-                <h4>More Information</h4>
-                <dl class="row">
-                    <dt class="col-sm-3">Publisher</dt>
-                    <dd class="col-sm-9 bible-data-publisher">@(Model.Publisher ?? "N/A")</dd>
-
-                    <dt class="col-sm-3">Copyright</dt>
-                    <dd class="col-sm-9 bible-data-copyright">@(Model.Copyright ?? "N/A")</dd>
-
-                    <dt class="col-sm-3">Language</dt>
-                    <dd class="col-sm-9 bible-data-language">@Model.Language</dd>
-
-                    @if (!string.IsNullOrWhiteSpace(Model.About))
-                    {
-                        <dt class="col-sm-3">About</dt>
-                        <dd class="col-sm-9 bible-data-about">@Model.About</dd>
-                    }
-
-                    @if (!string.IsNullOrWhiteSpace(Model.OtherInfo))
-                    {
-                        <dt class="col-sm-3">Other Info</dt>
-                        <dd class="col-sm-9 bible-data-other-info">@Model.OtherInfo</dd>
-                    }
-                </dl>
-            </div>
-        }
-        else
-        {
-            <div id="main-card" class="row shadow rounded p-3 mb-3 d-flex align-items-center justify-content-center">
-                <div class="col col-10 text-center">
-                    <h5 class="">Error</h5>
-                    <h6 class="mb-2 text-body-secondary">Please contact us at @("info@giwu.com") and Let us know that  that you show this message </h6>
-                </div>
-            </div>
-        }
-    </div>
+    <aside class="col-md-3 border-start p-3">
+        <h6>Parallel Versions</h6>
+        <div id="parallel"></div>
+    </aside>
 </div>

@@ -34,10 +34,17 @@ try
         options.AccessDeniedPath = $"/Account/Auth/AccessDenied";
     });
 
+    // Register HttpClient support
+    builder.Services.AddHttpClient();
+
+
+    // Register your services
     builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
     builder.Services.AddTransient<IEmailSender, EmailSender>();
 
     builder.Services.AddScoped<AppDataService>();
+    builder.Services.AddScoped<BibleService>();
+    builder.Services.AddScoped<GeminiService>();
 
     builder.Services.AddAutoMapper(typeof(Program));
 
